@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="choose">
+    <button class="btn" onclick="paper()">
+      <img class="img" src="imges/paper.png" alt="">
+    </button>
+    <button class="btn" onclick="rock()">
+      <img class="img" src="imges/rock.png" alt="">
+    </button>
+    <button class="btn" onclick="scissor()">
+      <img class="img" src="imges/scissor.png" alt="">
+    </button>
+    <br>
+    <button class="reset" onclick="
+      win=0;
+      loss=0;
+      draw=0;
+      document.getElementById('win').innerText = 'Wins : ' + win;
+      document.getElementById('loss').innerText = 'Loss : ' + loss;
+      document.getElementById('draw').innerText = 'Draw : ' + draw;
+    ">reset</button>
+    <p id="user-txt"></p>
+    <img id="user-img" class="img" src="" alt="">
+
+    <p id="computer-txt"></p>
+    <img id="computer-img" class="img" src="" alt="">
+    <br>
+    <label id="win"></label>
+    <label id="loss"></label>
+    <label id="draw"></label>
+
+  </div> 
+  
+  <script>
+    let user = "none",win=0,loss=0,draw=0;
+    let computer = "none";
+    images = {
+      rock : "imges/rock.png",
+      paper : "imges/paper.png",
+      scissor: "imges/scissor.png"
+    };
+    function result(){
+      let r = Math.floor(Math.random()*3) + 1;
+      if(r==1) computer = "rock";
+      else if(r==2) computer = "scissor"; 
+      else computer = "paper";
+
+      document.getElementById("user-txt").innerText = "You Have Chose : " + user;
+      document.getElementById("user-img").src=images[user];  
+      document.getElementById("computer-txt").innerText = "Computer Have Chose : " + computer;
+      document.getElementById("computer-img").src=images[computer]; 
+
+      if(user==computer) draw++;
+      if((user=="rock" && computer=="scissor") || (user=="paper" && computer=="rock") ||
+      (user=="scissor" && computer=="paper")) win++;
+      else loss++;
+
+      document.getElementById("win").innerText =  "Wins : " + win;
+      document.getElementById("loss").innerText = "Loss : " + loss;
+      document.getElementById("draw").innerText = "Draw : " + draw; 
+    }
+
+    function paper(){
+      user = "paper"
+      result()
+    }
+    function rock(){
+      user = "rock"
+      result()
+    }
+    function scissor(){
+      user = "scissor"
+      result()
+    }
+  </script>
+</body>
+</html>
